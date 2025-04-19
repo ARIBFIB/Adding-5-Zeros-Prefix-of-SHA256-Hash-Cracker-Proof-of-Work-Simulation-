@@ -1,88 +1,55 @@
 # Adding-5-Zeros-Prefix-of-SHA256-Hash-Cracker-Proof-of-Work-Simulation-
 A Python-based proof-of-work simulator that uses SHA-256 hashing to find a nonce (number) such that the resulting hash begins with five leading zeros. This mimics the mining process used in blockchain technology to validate data blocks.
 
-Nice! You’ve written a simple **proof-of-work style** hash cracker that looks for a SHA-256 hash starting with `"00000"` by incrementing a nonce — very cool!
+# 🔐 Adding 5-Zeros Prefix of SHA-256 Hash Cracker (Proof-of-Work Simulation)
 
-Here’s how you can structure your GitHub project:
-
----
-
-### 🔷 **Project Title (for GitHub Repo)**
-```
-SHA-256 Hash Cracker (Proof-of-Work Simulation)
-```
+A Python-based proof-of-work simulator that uses SHA-256 hashing to find a nonce (number) such that the resulting hash begins with **five leading zeros**. This mimics the mining process used in blockchain technology to validate data blocks.
 
 ---
 
-### 📝 **Project Description (for GitHub Repo)**
-```
-A Python-based proof-of-work simulator that uses SHA-256 hashing to find a nonce (number) such that the resulting hash begins with five leading zeros. This mimics the mining process used in blockchain technology to validate data blocks.
-```
+## 📸 Screenshots
 
----
+### ✅ Successful Hash Found
 
-### 📄 **README.md**
+![Found Hash](https://github.com/user-attachments/assets/f6a6e702-9c06-497f-929a-466ae09e2c3a)
 
-```markdown
-# SHA-256 Hash Cracker (Proof-of-Work Simulation)
+### 🧠 Sample Hash Visualization (via Online Tool)
 
-This is a simple Python project that demonstrates the concept of **proof-of-work** using the SHA-256 hashing algorithm. It continuously hashes a given string with an increasing integer (nonce) until a hash is found that starts with five leading zeros.
+![SHA256 Tool](https://github.com/user-attachments/assets/b766ade0-e8ee-4bcf-a202-283dce233da7)
 
 ---
 
 ## 💡 What is Proof-of-Work?
 
-Proof-of-work is a consensus mechanism used in blockchain systems like Bitcoin. It requires participants (miners) to solve a computational puzzle, which involves finding a number (nonce) that, when hashed with some data, produces a hash with certain properties (e.g., leading zeros).
+Proof-of-work is a consensus mechanism used in blockchain systems like Bitcoin. It requires participants (miners) to solve a computational puzzle. This puzzle involves finding a number (called a **nonce**) that, when hashed along with other data, produces a hash that meets specific criteria — such as starting with a certain number of zeros.
 
 ---
 
 ## 🛠️ How It Works
 
-1. A long prefix string is defined.
-2. A counter (`i`) starts at 0.
-3. In a loop, the string `prefix + i` is hashed using SHA-256.
-4. The loop continues until the hash begins with `"00000"`.
+1. A long and random `prefix` string is defined.
+2. A counter `i` (nonce) is initialized to 0.
+3. In a loop:
+    - `prefix + i` is hashed using SHA-256.
+    - If the hash begins with `"00000"`, it's accepted.
+    - Otherwise, the counter increments and the loop continues.
+4. Once found, the input and its matching hash are printed.
 
 ---
 
-## 🐍 Requirements
+## 🧪 Example Code
 
-- Python 3.x
+```python
+import hashlib
 
-No external libraries are needed.
+prefix = "Abdul Rehman Irfan Saima 2000 Saima Ali 100 Saqib Saqib 1500 Sara Sara This is me and tell me oajiodachpiahcpoasjpoaskdpojaspodjaspodjaspodjaspodjaspodjpoaskdpoaskdpasodkaspojdpociasjpocasjdhello text send block chain"
 
----
+i = 0
 
-## 🚀 How to Run
-
-```bash
-python hash_cracker.py
-```
-
----
-
-## 📦 Example Output
-
-```
-Found! Input: Haider Ali Saima 2000 ... 8741 → Hash: 000005f7ad29b4c62f1c4ab82346a6b80d4ef5192332e4...
-```
-
----
-
-## 📚 File Structure
-
-```
-hash_cracker.py     # Main script
-README.md           # Project documentation
-```
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License.
-```
-
----
-
-Let me know if you'd like help generating a `.gitignore` or pushing it to GitHub step-by-step.
+while True:
+    text = f"{prefix}{i}"
+    hash_result = hashlib.sha256(text.encode()).hexdigest()
+    if hash_result.startswith("00000"):
+        print(f"Found! Input: {text} → Hash: {hash_result}")
+        break
+    i += 1
